@@ -13,9 +13,18 @@ export const BlogController = async function (req, res) {
 
 
 export async function fetchAllBlogPostsController(req, res) {
-    const serverRes = {
-        data: await fetchBlogPosts(),
-        message: " Blog posts fetched successfully"
-    };
-    res.status(200).json(serverRes);
+    console.log("Incoming genre filter:", req.query); // log this
+
+    const { genre } = req.query;
+    try {
+        const serverRes = {
+            data: await fetchBlogPosts(genre),
+            message: "Blog posts fetched successfully"
+        };
+        res.status(200).json(serverRes);
+    } catch (err) {
+        console.error("Error fetching blogs:", err);
+        res.status(500).json({ message: "Internal Server Error" });
+    }
 }
+
