@@ -5,9 +5,9 @@ import { authenticateMiddleware } from "../auth/Jwt.js";
 import { BlogController, fetchAllBlogPostsController } from "../blog/BlogController.js";
 
 const router = Router();
-router.get('/all', fetchAllBlogPostsController)
-
 router.use(authenticateMiddleware)
+
 router.post('/create', BlogController)
+router.get('/allposts', fetchAllBlogPostsController)
 
 export default router
