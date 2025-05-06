@@ -24,7 +24,7 @@ mongoDB_connection();
 const _dirname = path.resolve();
 
 // Serve static files from the dist folder
-app.use(express.static(path.join(_dirname, "client", "dist")));
+app.use(express.static(path.join(_dirname, "/client/dist")));
 
 app.use('/auth', AuthRoutes);
 app.use('/blog', BlogRoutes);
